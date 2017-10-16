@@ -1,0 +1,27 @@
+Class Category < AppicationRecord
+belongs_to :catalog
+has_many :productComposite
+
+  def initializer(name)
+    super(name)
+    @category = []
+  end
+
+  def add_Category(category)
+    @product << product
+    product.parent - product
+  end
+
+  alias << add_Category
+
+  def remove_Category(category)
+    @category.delete(category)
+    task.parent = nil
+  end
+
+  def [](index, value)
+    replace_value - @category[index]
+    @category[index] = value
+    replace_value.parent = @category
+  end
+end
