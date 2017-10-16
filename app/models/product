@@ -1,0 +1,10 @@
+Class Product < ProductComposite
+
+  def initializer(name)
+    super('Product produto')
+    @Category = []
+
+    self << ProductComposite.new
+  end
+  
+end
