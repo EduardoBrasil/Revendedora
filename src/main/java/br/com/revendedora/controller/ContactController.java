@@ -4,7 +4,7 @@ import br.com.revendedora.dto.response.ContactResponse;
 import br.com.revendedora.model.Contact;
 import br.com.revendedora.repository.ContactRepository;
 import io.swagger.annotations.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,11 +35,11 @@ public class ContactController {
 
     @ApiOperation(value = "Busca por id do contato",
             produces = APPLICATION_JSON_VALUE)
-    @ApiResponses({@ApiResponse(code = 200,message = "Ok"),
-                   @ApiResponse(code = 400,message = "Bad Request",
-                   response = ContactResponse.class)})
+    @ApiResponses(value = { @ApiResponse(code = 200,message = "Ok"),
+                            @ApiResponse(code = 400,message = "Bad Request")
+                          })
     @GetMapping (CONTACT)
-    public ResponseEntity findById(@PathVariable Long id){
+    public ResponseEntity<?> findById(@PathVariable Long id){
         return repository.findById(id)
                 .map(record -> ResponseEntity.ok().body(record))
                 .orElse(ResponseEntity.notFound().build());
