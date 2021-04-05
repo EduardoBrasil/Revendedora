@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ContactResponse {
+public class ContactResponseDto {
 
     private static final long serialVersionUID = 7647455868089897436L;
 

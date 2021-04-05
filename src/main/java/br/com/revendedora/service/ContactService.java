@@ -1,19 +1,19 @@
 package br.com.revendedora.service;
 
-import br.com.revendedora.repository.ContactRepository;
-import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Service;
+import br.com.revendedora.dto.request.ContactRequestDto;
+import br.com.revendedora.dto.response.ContactResponseDto;
+import br.com.revendedora.model.Contact;
 
-@Service
-@AllArgsConstructor
-public class ContactService implements Contact {
+import java.util.List;
 
-    private final ContactRepository repository;
+public interface ContactService {
+    List<ContactResponseDto> getAllContacts();
+    //ContactResponseDto getAllContact();
+    ContactResponseDto getContactById(Long id);
+    ContactResponseDto saveContact(ContactRequestDto contactRequestDto);
+    ContactRequestDto updateContactById(Integer Id, ContactRequestDto contactRequestDto);
+    void deleteContactById(Integer id);
 
-
-    @Override
-    public ContactRepository findAll() {
-        repository.findAll();
-        return repository;
-    }
+    Contact getContactEntityById(Integer Id);
+    Contact saveContactByEntity(Contact contact);
 }

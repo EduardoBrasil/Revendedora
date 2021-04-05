@@ -1,16 +1,16 @@
 package br.com.revendedora.controller;
 
-import br.com.revendedora.dto.response.ContactResponse;
-import br.com.revendedora.model.Contact;
+import br.com.revendedora.dto.request.ContactRequestDto;
+import br.com.revendedora.dto.response.ContactResponseDto;
 import br.com.revendedora.repository.ContactRepository;
+import br.com.revendedora.service.ContactService;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 
@@ -26,24 +26,24 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RequestMapping(value = ROOT + RESELLER, produces = APPLICATION_JSON_VALUE)
 public class ContactController {
 
-    private ContactRepository repository;
+    private ContactService contactService;
 
 
-    ContactController(ContactRepository contactRepository) {
-        this.repository = contactRepository;
-    }
-
-    @ApiOperation(value = "Busca por id do contato",
-            produces = APPLICATION_JSON_VALUE)
+    @ApiOperation(value = "Find contact by id",produces = APPLICATION_JSON_VALUE)
     @ApiResponses(value = { @ApiResponse(code = 200,message = "Ok"),
                             @ApiResponse(code = 400,message = "Bad Request")
                           })
     @GetMapping (CONTACT)
-    public ResponseEntity<?> findById(@PathVariable Long id){
-        return repository.findById(id)
-                .map(record -> ResponseEntity.ok().body(record))
-                .orElse(ResponseEntity.notFound().build());
+    @ResponseStatus(HttpStatus.OK)
+    public ContactResponseDto getContactById(@PathVariable Long id){
+        return contactService.getContactById(id);
     }
 
-
+    @ApiOperation(value = "Create new contact", consumes = MediaType.APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+    @ApiResponses(value = { @ApiResponse(code = 201, message = "create new contact is successful", response = ContactResponseDto.class)})
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public ContactResponseDto saveContact(@RequestBody ContactRequestDto contactRequestDto) {
+        return contactService.saveContact(contactRequestDto);
+    }
 }
