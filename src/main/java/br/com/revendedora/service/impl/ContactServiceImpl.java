@@ -20,12 +20,6 @@ public class ContactServiceImpl implements ContactService {
     private final ContactMapper contactMapper;
 
 
-    public ContactServiceImpl(ContactMapper contactMapper, ContactRepository contactRepository) {
-        this.contactMapper = contactMapper;
-        this.contactRepository = contactRepository;
-
-    }
-
     @Override
     public List<ContactResponseDto> getAllContacts() {
         return contactMapper.toResponseDtoList(contactRepository.findAll());
