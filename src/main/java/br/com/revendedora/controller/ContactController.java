@@ -26,11 +26,9 @@ public class ContactController {
 
     private final ContactService contactService;
 
-
     @Autowired
     public ContactController(ContactService contactService){
         this.contactService = contactService;
-
     }
 
     @ApiOperation(value = "Create new contact", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
