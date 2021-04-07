@@ -15,9 +15,11 @@ import javax.persistence.Id;
 @Entity
 public class Contact {
 
+    private  static final long serialVersionUID = 8209226749238826045L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     private String name;
     private String email;
