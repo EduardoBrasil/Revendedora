@@ -6,13 +6,11 @@ import br.com.revendedora.mapper.ContactMapper;
 import br.com.revendedora.model.Contact;
 import br.com.revendedora.repository.ContactRepository;
 import br.com.revendedora.service.ContactService;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@AllArgsConstructor
 @Service
 public class ContactServiceImpl implements ContactService {
 
@@ -23,7 +21,6 @@ public class ContactServiceImpl implements ContactService {
     public ContactServiceImpl(ContactMapper contactMapper, ContactRepository contactRepository) {
         this.contactMapper = contactMapper;
         this.contactRepository = contactRepository;
-
     }
 
     @Override
@@ -32,10 +29,10 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
-    public ContactResponseDto getContactById(Long id) {
+    public ContactResponseDto getContactById(Integer id) {
         return contactRepository.findById(id)
-                .map(k -> contactMapper.toResponseDto(k))
-                .orElseThrow(()-> new RuntimeException());
+                .map(contactMapper::toResponseDto)
+                .orElseThrow(RuntimeException::new);
     }
 
     @Override
@@ -43,28 +40,9 @@ public class ContactServiceImpl implements ContactService {
         return saveAndReturnDTO(contactMapper.toEntity(contactRequestDto));
     }
 
-    @Override
-    public ContactRequestDto updateContactById(Integer Id, ContactRequestDto contactRequestDto) {
-        return null;
-    }
 
-    @Override
-    public void deleteContactById(Integer id) {
-
-    }
-
-    private ContactResponseDto saveAndReturnDTO(Contact contact) {
-        contact = contactRepository.save(contact);
+    private ContactResponseDto saveAndReturnDTO(Contact contactEntity) {
+        Contact contact = contactRepository.save(contactEntity);
         return contactMapper.toResponseDto(contact);
-    }
-
-    @Override
-    public Contact getContactEntityById(Integer Id) {
-        return null;
-    }
-
-    @Override
-    public Contact saveContactByEntity(Contact contact) {
-        return contactRepository.save(contact);
     }
 }

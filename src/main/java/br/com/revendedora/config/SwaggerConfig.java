@@ -29,7 +29,7 @@ public class SwaggerConfig {
 	}
 	
 	private ApiInfo metaData() {
-		ApiInfo apiInfo = new ApiInfoBuilder().title("CHALLENGE-MERCHANT-API")
+		ApiInfo apiInfo = new ApiInfoBuilder().title("REVENDEDORA-API")
 		                                      .description("Api Documentation")
 		                                      //                .version(this.versionNumber)
 		                                      .termsOfServiceUrl("urn:tos")

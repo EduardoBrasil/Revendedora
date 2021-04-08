@@ -11,7 +11,7 @@ import lombok.Setter;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ContactResponseDto {
 
-    private static final long serialVersionUID = 7647455868089897436L;
+    private Integer id;
 
     @ApiModelProperty(value = "Nome do contato")
     private String name;
