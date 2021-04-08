@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-
 @Service
 public class ContactServiceImpl implements ContactService {
 
@@ -42,9 +41,8 @@ public class ContactServiceImpl implements ContactService {
     }
 
 
-    private ContactResponseDto saveAndReturnDTO(Contact contact) {
-        contact = contactRepository.save(contact);
+    private ContactResponseDto saveAndReturnDTO(Contact contactEntity) {
+        Contact contact = contactRepository.save(contactEntity);
         return contactMapper.toResponseDto(contact);
     }
-
 }
