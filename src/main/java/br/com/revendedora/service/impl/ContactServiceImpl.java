@@ -17,7 +17,6 @@ public class ContactServiceImpl implements ContactService {
     private final ContactRepository contactRepository;
     private final ContactMapper contactMapper;
 
-    @Autowired
     public ContactServiceImpl(ContactMapper contactMapper, ContactRepository contactRepository) {
         this.contactMapper = contactMapper;
         this.contactRepository = contactRepository;
