@@ -23,7 +23,6 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RequestMapping(value = ROOT + RESELLER, produces = APPLICATION_JSON_VALUE)
 public class ContactController {
 
-
     private final ContactService contactService;
 
     @Autowired

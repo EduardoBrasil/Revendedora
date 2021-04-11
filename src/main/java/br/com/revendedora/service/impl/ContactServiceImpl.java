@@ -6,7 +6,6 @@ import br.com.revendedora.mapper.ContactMapper;
 import br.com.revendedora.model.Contact;
 import br.com.revendedora.repository.ContactRepository;
 import br.com.revendedora.service.ContactService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,6 +14,7 @@ import java.util.List;
 public class ContactServiceImpl implements ContactService {
 
     private final ContactRepository contactRepository;
+
     private final ContactMapper contactMapper;
 
     public ContactServiceImpl(ContactMapper contactMapper, ContactRepository contactRepository) {
